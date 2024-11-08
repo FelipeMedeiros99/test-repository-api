@@ -6,10 +6,10 @@ type Errors = {
 }
 
 
-export function handlerError(err: Errors, req: Request, res: Response, next: NextFunction){
-    try{
+export function handlerError(err: Errors, req: Request, res: Response, next: NextFunction) {
+    try {
         res.status(err.status).send(err.message)
-    }catch(e){
+    } catch (e) {
         console.log(e)
         res.status(500).send("Internal server error")
     }

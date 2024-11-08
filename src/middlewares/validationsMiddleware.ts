@@ -9,7 +9,7 @@ export function validSchemaMiddleware(schema: ObjectSchema) {
         const validation = schema.validate(userRegistrationData)
 
         if(validation.error){
-            throw {message: validation.error, status: 404}
+            throw {message: validation.error, status: 400}
         }
 
         next()

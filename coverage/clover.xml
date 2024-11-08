@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1731102671145" clover="3.2.0">
-  <project timestamp="1731102671145" name="All files">
-    <metrics statements="64" coveredstatements="62" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2" elements="70" coveredelements="67" complexity="0" loc="64" ncloc="64" packages="5" files="6" classes="6"/>
+<coverage generated="1731105556255" clover="3.2.0">
+  <project timestamp="1731105556256" name="All files">
+    <metrics statements="82" coveredstatements="79" conditionals="7" coveredconditionals="6" methods="3" coveredmethods="3" elements="92" coveredelements="88" complexity="0" loc="82" ncloc="82" packages="5" files="7" classes="7"/>
     <package name="src">
-      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.ts" path="/home/felipe-medeiros/Documents/repoprovas/back/src/app.ts">
-        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -17,10 +17,31 @@
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="21" coveredstatements="18" conditionals="3" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <file name="errorsMiddleware.ts" path="/home/felipe-medeiros/Documents/repoprovas/back/src/controllers/errorsMiddleware.ts">
+        <metrics statements="16" coveredstatements="13" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+      </file>
       <file name="userController.ts" path="/home/felipe-medeiros/Documents/repoprovas/back/src/controllers/userController.ts">
         <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -31,23 +52,23 @@
       </file>
     </package>
     <package name="src.middlewares">
-      <metrics statements="17" coveredstatements="15" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="validationsMiddleware.ts" path="/home/felipe-medeiros/Documents/repoprovas/back/src/middlewares/validationsMiddleware.ts">
-        <metrics statements="17" coveredstatements="15" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
