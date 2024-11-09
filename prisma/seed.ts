@@ -1,16 +1,7 @@
+import { faker } from "@faker-js/faker";
+import bcrypt from "bcrypt";
+
 import prisma from "../src/config/db";
-
-async function clearAllTables() {
-    const tablenames = await prisma.$queryRaw<Array<{ tablename: string }>>`SELECT tablename FROM pg_tables WHERE schemaname='public'`
-
-    for (const table of tablenames) {
-        try {
-            await prisma.$executeRawUnsafe(`TRUNCATE TABLE ${table.tablename} CASCADE`)
-        } catch (e) {
-        }
-    }
-
-}
 
 async function populingTerms() {
     await prisma.terms.createMany({
@@ -122,11 +113,30 @@ async function addDatasInTeachersTables() {
     await populingTeachers()
     await populingDisciplines()
     await populingTeachersDisciplines()
+
+}
+async function registerUsers() {
+    let data = []
+    for (let i = 0; i < 10; i++) {
+        const password = bcrypt.hashSync(faker.internet.password(), 10)
+        data.push({
+            email: faker.internet.email(),
+            password: password
+        })
+    }
+    await prisma.users.createMany({
+        data,
+        skipDuplicates: true
+    })
 }
 
 async function seed() {
-    await clearAllTables()
-    await addDatasInTeachersTables()
+    try {
+        await addDatasInTeachersTables()
+        await registerUsers()
+    } catch (e) {
+        console.log("err: ", e)
+    }
 }
 
 

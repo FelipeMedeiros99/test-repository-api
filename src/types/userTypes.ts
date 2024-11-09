@@ -1,5 +1,5 @@
 export type UserSignupType = {
-    name: string;
+    email: string;
     password: string;
-    passwordConfirmation: string
+    passwordConfirmation?: string
 }

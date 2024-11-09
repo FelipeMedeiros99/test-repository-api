@@ -9,7 +9,7 @@ describe("signup user test", () => {
     it("sending correct user data. should return status 201", async () => {
         const password = faker.internet.password()
         const userData = {
-            name: faker.person.fullName(),
+            email: faker.internet.email(),
             password: password,
             passwordConfirmation: password
         };
@@ -23,13 +23,13 @@ describe("signup user test", () => {
     it("sending incorrect user data. Should return 400", async () => {
         const password = faker.internet.password()
         const userData = {
-            name: faker.person.fullName(),
+            email: faker.internet.email(),
             password,
             passwordConfirmation: password
         };
 
         const incorrectUserDataScenarios = [
-            { ...userData, name: undefined },
+            { ...userData, email: undefined },
             { ...userData, password: undefined },
             { ...userData, passwordConfirmation: undefined },
         ]
