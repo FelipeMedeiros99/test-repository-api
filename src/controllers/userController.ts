@@ -1,16 +1,16 @@
 import { Request, Response } from "express"
 import { UserSignupType } from "../types/userTypes";
-import dotenv from "dotenv"
 
 import { registerUserInDatabaseRepository } from "../repositories/userRepository";
-
-
-dotenv.config()
+import { hashPassword } from "../services/tools";
 
 
 export async function signupUserController(req: Request, res: Response) {
-    const userData = req.body as UserSignupType;
-    
+
+    let userData = req.body as UserSignupType;
+    userData.password = hashPassword(userData.password)
+
     await registerUserInDatabaseRepository(userData)
+
     res.sendStatus(201);
 }
