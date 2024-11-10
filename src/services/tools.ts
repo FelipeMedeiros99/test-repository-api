@@ -6,3 +6,11 @@ export function hashPassword(password: string){
     const newPassword = bcrypt.hashSync(password, SALTS)    
     return newPassword;
 }
+
+export function comparePassword(password: string, hash: string | undefined){
+    if(hash){
+        return bcrypt.compareSync(password, hash)
+    }
+    
+    return false
+}
