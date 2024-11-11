@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Users {
   id       Int    @id @default(autoincrement())
   email    String @unique
@@ -25,7 +24,7 @@ model Users {
 model Categories {
   id   Int    @id @default(autoincrement())
   name String @unique
-  
+
   tests Tests[]
 
   @@map("categories")
@@ -38,20 +37,19 @@ model Tests {
   categoryId          Int
   teacherDisciplineId Int
 
-  category Categories @relation(fields: [categoryId], references: [id])
+  category          Categories           @relation(fields: [categoryId], references: [id])
   teacherDiscipline TeachersDiscliplines @relation(fields: [teacherDisciplineId], references: [id])
-
 
   @@map("tests")
 }
 
 model TeachersDiscliplines {
   id           Int @id @default(autoincrement())
-  teacherId    Int 
+  teacherId    Int
   disciplineId Int
 
-  teachers Teachers @relation(fields: [teacherId], references: [id])
-  disciplines Disciplines @relation(fields: [disciplineId], references: [id]) 
+  teachers    Teachers    @relation(fields: [teacherId], references: [id])
+  disciplines Disciplines @relation(fields: [disciplineId], references: [id])
 
   tests Tests[]
 
@@ -88,3 +86,8 @@ model Terms {
   @@map("terms")
 }
 
+model Tokens {
+  id        Int      @id @default(autoincrement())
+  token     String
+  createdAt DateTime @default(now())
+}
