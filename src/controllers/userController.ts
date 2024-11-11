@@ -1,9 +1,8 @@
 import { Request, Response } from "express"
-import { UserSignupType } from "../types/userTypes";
 
-import { findUser, registerUserInDatabaseRepository } from "../repositories/userRepository";
-import { comparePassword, hashPassword } from "../services/tools";
-import { ErrorType } from "../types/errorTypes";
+import { registerUserInDatabaseRepository } from "../repositories/userRepository";
+import { hashPassword, userDataValidation } from "../services/userService";
+import { UserSignupType } from "../types/userTypes";
 
 
 export async function signupUserController(req: Request, res: Response) {
@@ -20,20 +19,9 @@ export async function loginUserController(req: Request, res: Response) {
 
     let userData = req.body as UserSignupType;
     
-    const userIsInDatabase = await findUser(userData);
+    const databaseUserData = await userDataValidation(userData);
 
-    if(!userIsInDatabase){
-        const error: ErrorType = {message: "Email not found", status: 404};
-        throw error;
-    }
-    
-    const passwordIsCorrect = comparePassword(userData.password, userIsInDatabase.password)
-    if(!passwordIsCorrect){
-        const error: ErrorType = {message: "Incorrect password", status: 404};
-        throw error;
-    }
-
-    
+    console.log(databaseUserData)
 
     res.sendStatus(201);
 }

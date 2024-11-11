@@ -4,7 +4,7 @@ import request from "supertest";
 import app from "../../app";
 import prisma from "../../config/db";
 import exp from "constants";
-import { comparePassword } from "../../services/tools";
+import { comparePassword } from "../../services/userService";
 
 
 export async function signupUser() {
