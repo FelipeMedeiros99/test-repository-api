@@ -1,7 +1,3 @@
-import request from "supertest";
-import { faker } from "@faker-js/faker"
-
-import app from "../app";
 import { checkIfUSerIsSavedInDatabase, sendingIncorrectDatasUser, signupUser } from "./factories/userFactories";
 
 describe("signup user test", () => {
