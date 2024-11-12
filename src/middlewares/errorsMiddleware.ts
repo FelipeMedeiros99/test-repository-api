@@ -1,12 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
-type Errors = {
-    message: string;
-    status: number
-}
 
-
-export function handlerError(err: Errors, req: Request, res: Response, next: NextFunction) {
+export function handlerError(err: any, req: Request, res: Response, next: NextFunction) {
     try {
         if(err.status!==500){
             return res.status(err.status).send(err.message)
