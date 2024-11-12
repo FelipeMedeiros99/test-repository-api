@@ -125,6 +125,10 @@ async function registerUsers() {
             password: password
         })
     }
+    data.push({
+        email: "felipe@gmail.com",
+        password: "123456"
+    })
     await prisma.users.createMany({
         data,
         skipDuplicates: true

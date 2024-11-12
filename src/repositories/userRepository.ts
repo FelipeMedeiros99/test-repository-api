@@ -16,3 +16,12 @@ export async function findUser(userData: UserSignupType) {
 
     return databaseData;
 }
+
+export async function saveTokenAtDatabase(userId: number, token: string){
+    await prisma.tokens.create({
+        data: {
+            token: token,
+            userId: userId
+        }
+    })
+}
