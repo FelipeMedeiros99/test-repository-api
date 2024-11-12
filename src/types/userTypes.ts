@@ -3,3 +3,9 @@ export type UserSignupType = {
     password: string;
     passwordConfirmation?: string
 }
+
+export type UserDataTokenType = {
+    id: number;
+    email: string;
+    password?: string
+}
