@@ -11,6 +11,4 @@ app.use(json())
 app.use(router);
 app.use(handlerError as express.ErrorRequestHandler);
 
-setInterval(removeExpiredTokens, 1000)
-
 export default app;

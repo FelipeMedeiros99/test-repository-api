@@ -3,7 +3,6 @@ import request from "supertest";
 
 import app from "../../app";
 import prisma from "../../config/db";
-import exp from "constants";
 import { comparePassword } from "../../services/userService";
 
 
@@ -20,8 +19,7 @@ export async function signupUser() {
     expect(response.statusCode).toBe(201)
 }
 
-
-export async function sendingIncorrectDatasUser(){
+export async function sendingIncorrectDatasUser() {
     const password = faker.internet.password()
     const userData = {
         email: faker.internet.email(),
@@ -41,8 +39,7 @@ export async function sendingIncorrectDatasUser(){
     }
 }
 
-
-export async function checkIfUSerIsSavedInDatabase(){
+export async function checkIfUSerIsSavedInDatabase() {
     const password = faker.internet.password()
     const userData = {
         email: faker.internet.email(),
@@ -53,7 +50,7 @@ export async function checkIfUSerIsSavedInDatabase(){
     await request(app).post("/signup").send(userData);
 
     const userDataDb = await prisma.users.findFirst({
-        where: {email: userData.email}
+        where: { email: userData.email }
     })
 
 
@@ -61,4 +58,31 @@ export async function checkIfUSerIsSavedInDatabase(){
     expect(userDataDb?.email).toBe(userData.email)
     expect(comparePassword(userData.password, userDataDb?.password)).toBe(true)
 
+}
+
+export async function loginUser() {
+    const response = await request(app).post("/login").send({
+        "email": "felipe@gmail.com",
+        "password": "123456"
+    })
+
+    expect(response.statusCode).toBe(200);
+    expect(response.text).not.toBe(null)
+}
+
+
+export async function loginInvalidUser() {
+    const invalidDatas = [{
+        email: faker.internet.email(),
+        password: faker.internet.password()
+    },{
+        email: "felipe@gmail.com",
+        password: faker.internet.password()
+    }]
+
+    for(let data of invalidDatas){
+        const response = await request(app).post("/login").send(data)
+        expect(response.statusCode).toBe(401);
+        expect(response.text).not.toBe(null);
+    }
 }

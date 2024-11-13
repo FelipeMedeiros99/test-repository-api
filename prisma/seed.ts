@@ -145,4 +145,11 @@ async function seed() {
 }
 
 
-seed()
+
+// receita de bolo para caso de erro
+seed().catch(e => {
+    console.log(e);
+    process.exit(1);
+}).finally(async () => {
+    await prisma.$disconnect();
+})

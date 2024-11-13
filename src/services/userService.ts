@@ -25,13 +25,13 @@ export async function userDataValidation(userData: UserSignupType) {
     const userIsInDatabase = await findUser(userData);
 
     if (!userIsInDatabase) {
-        const error: ErrorType = { message: "Email not found", status: 404 };
+        const error: ErrorType = { message: "Email not found", status: 401 };
         throw error;
     }
 
     const passwordIsCorrect = comparePassword(userData.password, userIsInDatabase.password)
     if (!passwordIsCorrect) {
-        const error: ErrorType = { message: "Incorrect password", status: 404 };
+        const error: ErrorType = { message: "Incorrect password", status: 401 };
         throw error;
     }
 
