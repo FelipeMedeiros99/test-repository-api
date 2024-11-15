@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import "dotenv/config"
 
 import prisma from "../src/config/db";
+import { createToken, hashPassword } from "../src/services/userService";
+import { UserDataTokenType } from "../src/types/userTypes";
+
 
 async function populingTerms() {
     await prisma.terms.createMany({
@@ -116,6 +119,7 @@ async function addDatasInTeachersTables() {
     await populingTeachersDisciplines()
 
 }
+
 async function registerUsers() {
     let data = []
     for (let i = 0; i < 10; i++) {
@@ -127,7 +131,7 @@ async function registerUsers() {
     }
     data.push({
         email: "felipe@gmail.com",
-        password: "123456"
+        password: hashPassword("123456")
     })
     await prisma.users.createMany({
         data,
@@ -143,8 +147,6 @@ async function seed() {
         console.log("err: ", e)
     }
 }
-
-
 
 // receita de bolo para caso de erro
 seed().catch(e => {

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test prisma db seed && jest -i",
+    "test": "dotenv -e .env.test prisma migrate reset --force --skip-seed && dotenv -e .env.test prisma db seed && dotenv -e .env.test jest -i",
     "build": "tsc",
     "dev": "tsx watch src/server.ts",
     "start": "build/src/server.js",
-    "seed": "dotenv -e .env.test prisma migrate reset --force && dotenv -e .env.test prisma db seed"
+    "studio": "dotenv -e .env.test prisma studio"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
