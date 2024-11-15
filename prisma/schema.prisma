@@ -92,7 +92,7 @@ model Tokens {
   id        Int      @id @default(autoincrement())
   token     String
   createdAt DateTime @default(now())
-  userId Int 
+  userId    Int
 
   users Users @relation(fields: [userId], references: [id])
 
