@@ -4,6 +4,7 @@ import request from "supertest";
 import app from "../../app";
 import prisma from "../../config/db";
 import { comparePassword } from "../../services/userService";
+import { UserSignupType } from "../../types/userTypes";
 
 
 export async function signupUser() {
@@ -37,6 +38,22 @@ export async function sendingIncorrectDatasUser() {
         const response = await request(app).post("/signup").send(incorrectData)
         expect(response.statusCode).toBe(400)
     }
+}
+
+export async function duplicateUser() {
+    const userEmail = faker.internet.email();
+    const userPassword = faker.internet.password()
+
+    const userData: UserSignupType = {
+        email: userEmail,
+        password: userPassword,
+        passwordConfirmation: userPassword
+    };
+
+    await request(app).post("/signup").send(userData).expect(201)
+
+    await request(app).post("/signup").send(userData).expect(409)
+
 }
 
 export async function checkIfUSerIsSavedInDatabase() {
@@ -74,19 +91,14 @@ export async function loginInvalidUser() {
     const invalidDatas = [{
         email: faker.internet.email(),
         password: faker.internet.password()
-    },{
+    }, {
         email: "felipe@gmail.com",
         password: faker.internet.password()
     }]
 
-    for(let data of invalidDatas){
+    for (let data of invalidDatas) {
         const response = await request(app).post("/login").send(data)
         expect(response.statusCode).toBe(401);
         expect(response.text).not.toBe(null);
     }
-}
-
-//TODO
-export async function sendingUserWIthDuplicateEmail() {
-   
 }

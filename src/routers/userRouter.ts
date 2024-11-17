@@ -7,7 +7,7 @@ import { validUserExists } from "../middlewares/usersMiddleware";
 
 
 const userRouter = Router();
-//TODO: ADD CONFLIT VALIDATION
+
 userRouter.post("/signup", validSchemaMiddleware(signupUserSchema), validUserExists, signupUserController)
 userRouter.post("/login", validSchemaMiddleware(loginUserSchema), loginUserController)
 
