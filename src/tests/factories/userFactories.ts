@@ -70,7 +70,6 @@ export async function loginUser() {
     expect(response.text).not.toBe(null)
 }
 
-
 export async function loginInvalidUser() {
     const invalidDatas = [{
         email: faker.internet.email(),
@@ -85,4 +84,9 @@ export async function loginInvalidUser() {
         expect(response.statusCode).toBe(401);
         expect(response.text).not.toBe(null);
     }
+}
+
+//TODO
+export async function sendingUserWIthDuplicateEmail() {
+   
 }

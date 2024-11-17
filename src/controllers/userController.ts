@@ -6,7 +6,7 @@ import { UserDataTokenType, UserSignupType } from "../types/userTypes";
 
 
 export async function signupUserController(req: Request, res: Response) {
-
+    
     let userData = req.body as UserSignupType;
     userData.password = hashPassword(userData.password)
     await registerUserInDatabaseRepository(userData)

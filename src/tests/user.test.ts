@@ -8,6 +8,9 @@ describe("signup user test", () => {
 
     it("sending incorrect user data. Should return 400", sendingIncorrectDatasUser)
 
+    // TODO
+    it("sending duplicates emails. shold be return 409", sen)
+
 })
 
 describe("login user tests", () => {
