@@ -5,6 +5,9 @@ import "dotenv/config"
 import prisma from "../src/config/db";
 import { createToken, hashPassword } from "../src/services/userService";
 import { UserDataTokenType } from "../src/types/userTypes";
+import { Tests } from "@prisma/client";
+import { randonNumber } from "../src/tests/factories/testsFactories";
+import { TestType } from "../src/types/testsTypes";
 
 
 async function populingTerms() {
@@ -111,12 +114,34 @@ async function populingTeachersDisciplines() {
     })
 }
 
+async function populingTests() {
+    const tests: TestType[] = []
+
+    for (let i = 0; i < 30; i++) {
+        const test: Omit<Tests, "id"> = {
+            name: faker.person.fullName(),
+            pdfUrl: faker.internet.url(),
+            categoryId: randonNumber(1, 4),
+            teacherDisciplineId: randonNumber(1, 2)
+        }
+
+        tests.push(test);
+    }
+
+    await prisma.tests.createMany({
+        data: tests
+    })
+
+
+}
+
 async function addDatasInTeachersTables() {
     await populingTerms()
     await populingCategories()
     await populingTeachers()
     await populingDisciplines()
     await populingTeachersDisciplines()
+    await populingTests()
 
 }
 

@@ -5,7 +5,7 @@ import app from "../../app";
 import prisma from "../../config/db";
 
 
-function randonNumber(min: number, max: number) {
+export function randonNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 

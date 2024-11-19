@@ -14,3 +14,8 @@ export async function saveTest(testData: TestType) {
         data: testData
     })
 }
+
+export async function findTests() {
+    const allTests = await prisma.tests.findMany();
+    return allTests;
+}

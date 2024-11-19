@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import prisma from "../config/db"
-import { saveTest } from "../repositories/testsRepository";
+import { findTests, saveTest } from "../repositories/testsRepository";
 
 
 export async function addTestController(req: Request, res: Response) {
@@ -10,5 +10,7 @@ export async function addTestController(req: Request, res: Response) {
 }
 
 export async function returnTestsController(req: Request, res: Response) {
-    
+    const allTests = await findTests()
+
+    res.status(200).send(allTests)
 }
