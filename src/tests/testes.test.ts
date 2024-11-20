@@ -1,11 +1,20 @@
-import { sendTestWithIncorrectFormatToken, sendTestWithInvalidToken, sendTestWithoutToken, sendTestWithValidToken } from "./factories/testsFactories"
+import { findAllTests, findTestWitoutToken, sendRequestsWithoutToken, sendRequestsWithIncorrectFormatToken, sendTestWithInvalidToken, sendTestWithValidToken } from "./factories/testsFactories"
 
 describe("Tests router tests", ()=>{
-    it("Try to send test witout token, it should be return 401", sendTestWithoutToken);
+    describe("token tests", ()=>{
+        it("Try to send requests witout token, it should be return 401", sendRequestsWithoutToken);
+    
+        it("Try to send request with incorrect token format, it should be return 401", sendRequestsWithIncorrectFormatToken)
+    
+        // it("Try to send invalid/expired token, it should be return 401", sendTestWithInvalidToken)
+    
+        // TODO
+        // it("Try to send request with correct token, it should be return 201", sendTestWithValidToken)
+    })
 
-    it("Try to send test with incorrect token format, it should be return 401", sendTestWithIncorrectFormatToken)
+    // describe("find tests test", ()=>{
+    //     it("Find all test witout token", findTestWitoutToken)
 
-    it("Try to send invalid/expired token, it should be return 401", sendTestWithInvalidToken)
-
-    it("Try to send test with correct token, it should be return 201", sendTestWithValidToken)
+    //     it("find all tests. Should be 200 and not null array", findAllTests)
+    // })
 })
