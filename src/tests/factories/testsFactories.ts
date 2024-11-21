@@ -91,9 +91,3 @@ export async function findAllTests() {
     expect(response.statusCode).toBe(200)
 }
 
-export async function findTestWitoutToken() {
-    const response = await request(app).get("/tests")
-    expect(response.status).toBe(401)
-    expect(response.body).toStrictEqual({})
-
-}
