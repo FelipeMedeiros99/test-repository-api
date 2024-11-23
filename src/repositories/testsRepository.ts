@@ -1,3 +1,4 @@
+import { Tests } from "@prisma/client";
 import prisma from "../config/db";
 import { TestType } from "../types/testsTypes";
 
@@ -9,7 +10,7 @@ export async function tokenIsInDatabase(token: string) {
     if(!tokenInDatabase) throw { message: "Token expired", status: 401}
 }   
 
-export async function saveTest(testData: TestType) {
+export async function saveTest(testData: Omit<Tests, "id">) {
     await prisma.tests.create({
         data: testData
     })

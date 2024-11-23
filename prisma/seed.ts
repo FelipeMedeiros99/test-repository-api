@@ -5,7 +5,7 @@ import "dotenv/config"
 import prisma from "../src/config/db";
 import { createToken, hashPassword } from "../src/services/userService";
 import { UserDataTokenType } from "../src/types/userTypes";
-import { Tests } from "@prisma/client";
+import { Periods, Tests } from "@prisma/client";
 import { randonNumber } from "../src/tests/factories/testsFactories";
 import { TestType } from "../src/types/testsTypes";
 
@@ -21,6 +21,17 @@ async function populingTerms() {
             { number: 6 }
         ],
         skipDuplicates: true
+    })
+}
+
+async function populingPeriods(){
+    const periods: Omit<Periods, "id">[] = []
+    for(let i=0; i<9; i++){
+        periods.push({period: `P${i+1}`})
+    }
+
+    await prisma.periods.createMany({
+        data: periods
     })
 }
 
@@ -122,7 +133,8 @@ async function populingTests() {
             name: faker.person.fullName(),
             pdfUrl: faker.internet.url(),
             categoryId: randonNumber(1, 4),
-            teacherDisciplineId: randonNumber(1, 2)
+            teacherDisciplineId: randonNumber(1, 2),
+            periodId: randonNumber(1, 9)
         }
 
         tests.push(test);
@@ -135,7 +147,8 @@ async function populingTests() {
 
 }
 
-async function addDatasInTeachersTables() {
+async function addAllDatas() {
+    await populingPeriods()
     await populingTerms()
     await populingCategories()
     await populingTeachers()
@@ -166,7 +179,7 @@ async function registerUsers() {
 
 async function seed() {
     try {
-        await addDatasInTeachersTables()
+        await addAllDatas()
         await registerUsers()
     } catch (e) {
         console.log("err: ", e)
