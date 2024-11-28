@@ -10,7 +10,8 @@ export async function addTestController(req: Request, res: Response) {
 }
 
 export async function returnTestsController(req: Request, res: Response) {
-    const allTests = await findTests()
+    const groupBy = req.query?.groupBy as string | undefined
+    const allTests = await findTests(groupBy)
 
     res.status(200).send(allTests)
 }

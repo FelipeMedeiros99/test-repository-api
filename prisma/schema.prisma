@@ -38,21 +38,11 @@ model Tests {
   pdfUrl              String
   categoryId          Int
   teacherDisciplineId Int
-  periodId           Int
 
-  period            Periods              @relation(fields: [periodId], references: [id])
   category          Categories           @relation(fields: [categoryId], references: [id])
   teacherDiscipline TeachersDiscliplines @relation(fields: [teacherDisciplineId], references: [id])
 
   @@map("tests")
-}
-
-model Periods {
-  id     Int    @id @default(autoincrement())
-  period String
-
-  test Tests[]
-  @@map("periods")
 }
 
 model TeachersDiscliplines {
